@@ -52,10 +52,14 @@ public class AJSplash implements AJImageDesign {
 
     public static void AJShowSplash() {
         AJImageSplash = new ImageView(new Image(new AJSplash().AJGetPathImage()));
-        AJImageSplash.setFitWidth(410);
-        AJImageSplash.setFitHeight(240);
         AJRoot = new Group();
         scene = new Scene(AJRoot, 410, 240);
+        AJProgressBar = new ProgressBar();
+        AJProgressBarLabel = new Label("0%");
+        AJNameLabel = new Label("EcuFauna");
+
+        AJImageSplash.setFitWidth(410);
+        AJImageSplash.setFitHeight(240);
         stage.setFullScreen(false);
         stage.setResizable(false);
         stage.setOpacity(0.9);
@@ -64,9 +68,7 @@ public class AJSplash implements AJImageDesign {
         stage.getIcons().add(new Image(new AJLogo().AJGetPathImage()));
         stage.setScene(scene);
         stage.show();
-        AJProgressBar = new ProgressBar();
-        AJProgressBarLabel = new Label("0%");
-        AJNameLabel = new Label("EcuFauna");
+        
         AJNameLabel.setFont(new Font("Elephant", 45));
         AJNameLabel.setLayoutX(95);
         AJNameLabel.setLayoutY(85);
@@ -79,7 +81,7 @@ public class AJSplash implements AJImageDesign {
     }
 
     private static void updateProgress(int progress) {
-        PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
+        PauseTransition pause = new PauseTransition(Duration.millis(250));
         if (progress <= 100) {
             AJProgressBar.setLayoutX(10);
             AJProgressBar.setLayoutY(220);
@@ -94,9 +96,10 @@ public class AJSplash implements AJImageDesign {
             }
 
             pause.setOnFinished(event -> {
-                if (progress == 100)
+                if (progress == 100) {
                     stage.close();
-                else
+                    AJForm.AJShowStageForm();
+                } else
                     updateProgress(progress + 1);
 
             });
