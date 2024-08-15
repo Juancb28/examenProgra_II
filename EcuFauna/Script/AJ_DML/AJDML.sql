@@ -63,3 +63,4 @@ INSERT INTO AJTipoAlimento
     ('IngestaNativa');
 
 
+SELECT NombreGenoAlimento, FechaCreacion FROM AJGenoAlimento WHERE idAJGenoAlimento > 0;

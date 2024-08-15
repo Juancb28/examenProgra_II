@@ -10,7 +10,4 @@ public class AJLogo implements AJImageDesign {
     public InputStream AJGetPathImage() {
         return Objects.requireNonNull(getClass().getResourceAsStream("/Images/LogoEcuFauna.png"));
     }
-
-
-
 }

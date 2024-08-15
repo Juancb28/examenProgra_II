@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public abstract class AJSQLiteDataHelper {
 
     private static Connection AJConn;
-    private static final String AJPATHDBCONNECTION = "DataBase\\AJDataBase.sqlite";
+    private static final String AJPATHDBCONNECTION = "EcuFauna\\DataBase\\AJDataBase.sqlite";
 
     protected static synchronized Connection AJOpenConnection() {
         try {
