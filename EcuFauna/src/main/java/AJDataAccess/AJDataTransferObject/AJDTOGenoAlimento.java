@@ -10,6 +10,10 @@ public class AJDTOGenoAlimento {
     public AJDTOGenoAlimento() {
     }
 
+    public AJDTOGenoAlimento(String nombreGenoAlimento) {
+        NombreGenoAlimento = nombreGenoAlimento;
+    }
+
     public AJDTOGenoAlimento(Integer idAJGenoAlimento, String nombreGenoAlimento, String estado, String fechaCreacion) {
         this.idAJGenoAlimento = idAJGenoAlimento;
         NombreGenoAlimento = nombreGenoAlimento;

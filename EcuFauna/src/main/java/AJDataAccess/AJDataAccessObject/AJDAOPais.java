@@ -10,20 +10,20 @@ import java.util.List;
 
 import AJDataAccess.AJIDAO;
 import AJDataAccess.AJSQLiteDataHelper;
-import AJDataAccess.AJDataTransferObject.AJDTOIngestaNativa;
+import AJDataAccess.AJDataTransferObject.AJDTOPais;
 import AJFramework.AJException;
 
-public class AJDAOIngestaNativa extends AJSQLiteDataHelper implements AJIDAO<AJDTOIngestaNativa> {
+public class AJDAOPais extends AJSQLiteDataHelper implements AJIDAO<AJDTOPais> {
 
     @Override
-    public Boolean AJCreate(AJDTOIngestaNativa entity) throws Exception {
-        String query = "INSERT INTO AJIngestaNativa" +
-                "(NombreIngestaNativa) VALUES" +
+    public Boolean AJCreate(AJDTOPais entity) throws Exception {
+        String query = "INSERT INTO AJPaises" +
+                "(NombrePais) VALUES" +
                 "(?)";
         try {
             Connection AJCon = AJOpenConnection();
             PreparedStatement AJpstmt = AJCon.prepareStatement(query);
-            AJpstmt.setString(1, entity.getNombreIngestaNativa());
+            AJpstmt.setString(1, entity.getNombrePais());
             AJpstmt.executeQuery();
             return true;
         } catch (SQLException e) {
@@ -33,9 +33,9 @@ public class AJDAOIngestaNativa extends AJSQLiteDataHelper implements AJIDAO<AJD
 
     @Override
     public Boolean AJDelete(Integer idEntity) throws Exception {
-        String query = "UPDATE AJIngestaNativa" +
+        String query = "UPDATE AJPaises" +
                 "SET Estado = ?" +
-                "WHERE idAJIngestaNativa = ?";
+                "WHERE idAJPais = ?";
         try {
             Connection AJCon = AJOpenConnection();
             PreparedStatement AJpstmt = AJCon.prepareStatement(query);
@@ -49,15 +49,15 @@ public class AJDAOIngestaNativa extends AJSQLiteDataHelper implements AJIDAO<AJD
     }
 
     @Override
-    public Boolean AJUpdate(AJDTOIngestaNativa entity) throws Exception {
-        String query = "UPDATE AJIngestaNativa" +
-                "SET NombreIngestaNativa = ?" +
-                "WHERE idAJIngestaNativa = ?";
+    public Boolean AJUpdate(AJDTOPais entity) throws Exception {
+        String query = "UPDATE AJPaises" +
+                "SET NombrePais = ?" +
+                "WHERE idAJPais = ?";
         try {
             Connection AJCon = AJOpenConnection();
             PreparedStatement AJpstmt = AJCon.prepareStatement(query);
-            AJpstmt.setString(1, entity.getNombreIngestaNativa());
-            AJpstmt.setInt(2, entity.getIdAJIngestaNativa());
+            AJpstmt.setString(1, entity.getNombrePais());
+            AJpstmt.setInt(2, entity.getIdAJPais());
             AJpstmt.executeQuery();
             return true;
         } catch (SQLException e) {
@@ -66,18 +66,18 @@ public class AJDAOIngestaNativa extends AJSQLiteDataHelper implements AJIDAO<AJD
     }
 
     @Override
-    public List<AJDTOIngestaNativa> AJReadAll() throws Exception {
-        String query = "SELECT idAJIngestaNativa, NombreIngestaNativa,"
-                + "FechaCreacion FROM AJIngestaNativa WHERE "
+    public List<AJDTOPais> AJReadAll() throws Exception {
+        String query = "SELECT idAJPais, NombrePais,"
+                + "FechaCreacion FROM AJPaises WHERE "
                 + "Estado LIKE 'A' ";
-        List<AJDTOIngestaNativa> AJList = new ArrayList<>();
+        List<AJDTOPais> AJList = new ArrayList<>();
         try {
             Connection AJcon = AJOpenConnection();
             Statement AJstmt = AJcon.createStatement();
             ResultSet AJRs = AJstmt.executeQuery(query);
 
             while (AJRs.next()) {
-                AJDTOIngestaNativa AJdto = new AJDTOIngestaNativa(
+                AJDTOPais AJdto = new AJDTOPais(
                         AJRs.getInt(1),
                         AJRs.getString(2),
                         "A",
@@ -92,20 +92,19 @@ public class AJDAOIngestaNativa extends AJSQLiteDataHelper implements AJIDAO<AJD
     }
 
     @Override
-    public AJDTOIngestaNativa AJReadBy(Integer idEntity) throws Exception {
-        String query = "SELECT NombreIngestaNativa FROM AJIngestaNativa WHERE "
-                + "idAJIngestaNativa = " + idEntity;
-        AJDTOIngestaNativa AJDto = new AJDTOIngestaNativa();
+    public AJDTOPais AJReadBy(Integer idEntity) throws Exception {
+        String query = "SELECT NombrePais FROM AJPaises WHERE "
+                + "idAJPais = " + idEntity;
+        AJDTOPais AJDto = new AJDTOPais();
         try {
             Connection AJcon = AJOpenConnection();
             Statement AJstmt = AJcon.createStatement();
             ResultSet AJRs = AJstmt.executeQuery(query);
             while (AJRs.next()) {
-                AJDto = new AJDTOIngestaNativa(AJRs.getString(1));
+                AJDto = new AJDTOPais(AJRs.getString(1));
             }
         } catch (SQLException e) {
             throw new AJException(e.getMessage(), getClass().getName(), "AJReadBy()");
-
         }
         return AJDto;
     }

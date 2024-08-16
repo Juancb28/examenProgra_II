@@ -64,3 +64,37 @@ INSERT INTO AJTipoAlimento
 
 
 SELECT NombreGenoAlimento, FechaCreacion FROM AJGenoAlimento WHERE idAJGenoAlimento > 0;
+
+SELECT idAJProvincia, NombreProvincia, idRegion, FechaCreacion FROM AJProvincias 
+        JOIN AJRegiones
+        WHERE Estado LIKE 'A' ;
+
+SELECT P.idAJProvincia, P.NombreProvincia, R.NombreRegion, PA.NombrePais FROM AJProvincias P 
+        JOIN AJRegiones R ON P.idRegion = R.idAJRegion
+        JOIN AJPaises PA ON R.idPais = PA.idAJPais
+        WHERE P.Estado LIKE 'A' AND R.Estado LIKE 'A' AND PA.Estado LIKE 'A';
+
+SELECT P.NombreProvincia, R.NombreRegion, PA.NombrePais FROM AJProvincias P  
+        JOIN AJRegiones R ON P.idRegion = R.idAJRegion 
+        JOIN AJPaises PA ON R.idPais = PA.idAJPais 
+        WHERE P.Estado LIKE 'A' AND R.Estado LIKE 'A' AND PA.Estado LIKE 'A' AND idAJProvincia =   21;
+
+SELECT H.TipoHormiga, S.NombreSexo, P.NombreProvincia, G.NombreGenoAlimento, I.NombreIngestaNativa, H.FechaCreacion
+        FROM AJHormigas H
+        JOIN AJSexo S ON H.idSexo = S.idAJSexo
+        JOIN AJProvincias P ON H.idProvincia = P.idAJProvincia
+        JOIN AJGenoAlimento G ON H.idGenoAlimento = G.idAJGenoAlimento 
+        JOIN AJIngestaNativa I ON H.idIngestaNativa = I.idAJIngestaNativa 
+        WHERE H.Estado LIKE 'A' AND S.Estado  LIKE 'A' AND P.Estado LIKE 'A' AND G.Estado LIKE 'A' AND I.Estado LIKE 'A';
+SELECT H.TipoHormiga, S.NombreSexo, P.NombreProvincia, G.NombreGenoAlimento, I.NombreIngestaNativa, H.FechaCreacion
+        FROM AJHormigas H
+        JOIN AJSexo S ON H.idSexo = S.idAJSexo
+        JOIN AJProvincias P ON H.idProvincia = P.idAJProvincia
+        JOIN AJGenoAlimento G ON H.idGenoAlimento = G.idAJGenoAlimento 
+        JOIN AJIngestaNativa I ON H.idIngestaNativa = I.idAJIngestaNativa 
+        WHERE H.Estado LIKE 'A' AND S.Estado  LIKE 'A' AND P.Estado LIKE 'A' AND G.Estado LIKE 'A' AND I.Estado LIKE 'A' AND idAJHormiga = 1;
+
+SELECT * FROM AJHormigas;
+INSERT INTO AJHormigas
+    (TipoHormiga, idSexo, idProvincia, idGenoAlimento, idIngestaNativa) VALUES
+    ('Hormiga', 1, 10, 3, 3);

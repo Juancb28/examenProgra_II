@@ -17,14 +17,13 @@ public class AJDAOGenoAlimento extends AJSQLiteDataHelper implements AJIDAO<AJDT
 
     @Override
     public Boolean AJCreate(AJDTOGenoAlimento entity) throws Exception {
-        AJDTOGenoAlimento AJDTOGen = new AJDTOGenoAlimento();
         String query = "INSERT INTO AJGenoAlimento" +
                 "(NombreGenoAlimento) VALUES" +
                 "(?)";
         try {
             Connection AJCon = AJOpenConnection();
             PreparedStatement AJpstmt = AJCon.prepareStatement(query);
-            AJpstmt.setString(1, AJDTOGen.getNombreGenoAlimento());
+            AJpstmt.setString(1, entity.getNombreGenoAlimento());
             AJpstmt.executeQuery();
             return true;
         } catch (SQLException e) {
@@ -45,7 +44,7 @@ public class AJDAOGenoAlimento extends AJSQLiteDataHelper implements AJIDAO<AJDT
             AJpstmt.executeQuery();
             return true;
         } catch (SQLException e) {
-            throw new AJException(e.getMessage(), getClass().getName(), "create()");
+            throw new AJException(e.getMessage(), getClass().getName(), "AJDelete()");
         }
     }
 
@@ -62,7 +61,7 @@ public class AJDAOGenoAlimento extends AJSQLiteDataHelper implements AJIDAO<AJDT
             AJpstmt.executeQuery();
             return true;
         } catch (SQLException e) {
-            throw new AJException(e.getMessage(), getClass().getName(), "create()");
+            throw new AJException(e.getMessage(), getClass().getName(), "AJUpdate()");
         }
     }
 
@@ -81,14 +80,13 @@ public class AJDAOGenoAlimento extends AJSQLiteDataHelper implements AJIDAO<AJDT
                 AJDTOGenoAlimento AJdto = new AJDTOGenoAlimento(
                         AJRs.getInt(1),
                         AJRs.getString(2),
-                        AJRs.getString(3),
-                        null);
+                        "A",
+                        AJRs.getString(3));
                 AJList.add(AJdto);
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
-            // throw new AJException(e.getMessage(), getClass().getName(), "create()");
+            throw new AJException(e.getMessage(), getClass().getName(), "AJReadAll()");
         }
         return AJList;
     }
@@ -103,15 +101,10 @@ public class AJDAOGenoAlimento extends AJSQLiteDataHelper implements AJIDAO<AJDT
             Statement AJstmt = AJcon.createStatement();
             ResultSet AJRs = AJstmt.executeQuery(query);
             while (AJRs.next()) {
-                AJDto = new AJDTOGenoAlimento(
-                        null,
-                        AJRs.getString(1),
-                        null,
-                        null);
+                AJDto = new AJDTOGenoAlimento(AJRs.getString(1));
             }
         } catch (SQLException e) {
-            // throw new AJException(e.getMessage(), getClass().getName(), "create()");
-            e.printStackTrace();
+            throw new AJException(e.getMessage(), getClass().getName(), "AJReadBy()");
         }
         return AJDto;
     }
