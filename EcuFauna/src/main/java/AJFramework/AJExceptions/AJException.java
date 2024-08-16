@@ -1,4 +1,4 @@
-package AJFramework;
+package AJFramework.AJExceptions;
 
 public class AJException extends Exception{
     public AJException(String e, String clase, String metodo) {

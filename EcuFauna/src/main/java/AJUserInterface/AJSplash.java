@@ -102,7 +102,9 @@ public class AJSplash implements AJImageDesign {
                 if (progress == 100) {
                     stage.close();
                     try {
-                        AJForm.AJShowStageForm();
+                        // AJLogin.setAJLoginStage(stage);
+                        AJLogin.AJShowLogin();
+                        // AJForm.AJShowStageForm();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

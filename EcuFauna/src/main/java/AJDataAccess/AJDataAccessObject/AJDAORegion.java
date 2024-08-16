@@ -11,7 +11,7 @@ import java.util.List;
 import AJDataAccess.AJIDAO;
 import AJDataAccess.AJSQLiteDataHelper;
 import AJDataAccess.AJDataTransferObject.AJDTORegiones;
-import AJFramework.AJException;
+import AJFramework.AJExceptions.AJException;
 
 public class AJDAORegion extends AJSQLiteDataHelper implements AJIDAO<AJDTORegiones> {
 

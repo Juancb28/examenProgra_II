@@ -44,7 +44,7 @@ public class AJForm {
         AJFormStage.setFullScreen(false);
         AJFormStage.setResizable(false);
         AJFormStage.centerOnScreen();
-        AJFormStage.setTitle("EcuFauna 2K24A");
+        AJFormStage.setTitle("EcuFauna 2K24A - Form");
         AJFormStage.getIcons().add(new Image(new AJLogo().AJGetPathImage()));
         AJFormStage.setScene(AJScene);
         AJFormStage.show();
@@ -81,7 +81,6 @@ public class AJForm {
         AJTextField.setScaleX(2.5);
         AJTextField.setScaleY(1.5);
         AJTextField.setEditable(false);
-
 
         AJRoot.getChildren().add(AJTextField);
 

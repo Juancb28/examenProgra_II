@@ -10,8 +10,7 @@ import java.util.*;
 import AJDataAccess.AJIDAO;
 import AJDataAccess.AJSQLiteDataHelper;
 import AJDataAccess.AJDataTransferObject.AJDTOHormiga;
-import AJDataAccess.AJDataTransferObject.AJDTOProvincia;
-import AJFramework.AJException;
+import AJFramework.AJExceptions.AJException;
 
 public class AJDAOHormiga extends AJSQLiteDataHelper implements AJIDAO<AJDTOHormiga> {
 
