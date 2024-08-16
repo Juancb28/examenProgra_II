@@ -11,7 +11,7 @@ import java.util.List;
 import AJDataAccess.AJIDAO;
 import AJDataAccess.AJSQLiteDataHelper;
 import AJDataAccess.AJDataTransferObject.AJDTOGenoAlimento;
-import AJFramework.AJException;
+import AJFramework.AJExceptions.AJException;
 
 public class AJDAOGenoAlimento extends AJSQLiteDataHelper implements AJIDAO<AJDTOGenoAlimento> {
 

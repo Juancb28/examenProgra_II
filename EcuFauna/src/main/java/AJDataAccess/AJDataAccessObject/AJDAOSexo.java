@@ -11,7 +11,7 @@ import java.util.List;
 import AJDataAccess.AJIDAO;
 import AJDataAccess.AJSQLiteDataHelper;
 import AJDataAccess.AJDataTransferObject.AJDTOSexo;
-import AJFramework.AJException;
+import AJFramework.AJExceptions.AJException;
 
 public class AJDAOSexo extends AJSQLiteDataHelper implements AJIDAO<AJDTOSexo> {
 

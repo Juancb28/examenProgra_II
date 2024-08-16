@@ -11,7 +11,7 @@ import java.util.List;
 import AJDataAccess.AJIDAO;
 import AJDataAccess.AJSQLiteDataHelper;
 import AJDataAccess.AJDataTransferObject.AJDTOProvincia;
-import AJFramework.AJException;
+import AJFramework.AJExceptions.AJException;
 
 public class AJDAOProvincia extends AJSQLiteDataHelper implements AJIDAO<AJDTOProvincia> {
 

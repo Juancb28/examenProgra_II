@@ -11,7 +11,7 @@ import java.util.List;
 import AJDataAccess.AJIDAO;
 import AJDataAccess.AJSQLiteDataHelper;
 import AJDataAccess.AJDataTransferObject.AJDTOPais;
-import AJFramework.AJException;
+import AJFramework.AJExceptions.AJException;
 
 public class AJDAOPais extends AJSQLiteDataHelper implements AJIDAO<AJDTOPais> {
 
