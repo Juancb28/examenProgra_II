@@ -69,7 +69,7 @@ public class AJDAOSexo extends AJSQLiteDataHelper implements AJIDAO<AJDTOSexo> {
     public List<AJDTOSexo> AJReadAll() throws Exception {
         String query = "SELECT idAJSexo, NombreSexo,"
                 + "FechaCreacion FROM AJSexo WHERE "
-                + "Estado LIKE 'A' ";
+                + "Estado LIKE 'VIVO' ";
         List<AJDTOSexo> AJList = new ArrayList<>();
         try {
             Connection AJcon = AJOpenConnection();
@@ -80,7 +80,7 @@ public class AJDAOSexo extends AJSQLiteDataHelper implements AJIDAO<AJDTOSexo> {
                 AJDTOSexo AJdto = new AJDTOSexo(
                         AJRs.getInt(1),
                         AJRs.getString(2),
-                        "A",
+                        "VIVO",
                         AJRs.getString(3));
                 AJList.add(AJdto);
             }

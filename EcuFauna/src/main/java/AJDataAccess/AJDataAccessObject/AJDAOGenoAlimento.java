@@ -69,7 +69,7 @@ public class AJDAOGenoAlimento extends AJSQLiteDataHelper implements AJIDAO<AJDT
     public List<AJDTOGenoAlimento> AJReadAll() throws Exception {
         String query = "SELECT idAJGenoAlimento, NombreGenoAlimento,"
                 + "FechaCreacion FROM AJGenoAlimento WHERE "
-                + "Estado LIKE 'A' ";
+                + "Estado LIKE 'VIVO' ";
         List<AJDTOGenoAlimento> AJList = new ArrayList<>();
         try {
             Connection AJcon = AJOpenConnection();

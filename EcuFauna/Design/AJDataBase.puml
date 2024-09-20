@@ -1,0 +1,88 @@
+@startuml
+
+entity AJPaises {
+  * idAJPais : INTEGER
+  --
+  NombrePais : VARCHAR(50)
+  Estado : CHAR(1)
+  FechaCreacion : DATETIME
+}
+
+entity AJRegiones {
+  * idAJRegion : INTEGER
+  --
+  NombreRegion : VARCHAR(50)
+  idPais : INTEGER
+  Estado : CHAR(1)
+  FechaCreacion : DATETIME
+}
+
+entity AJProvincias {
+  * idAJProvincia : INTEGER
+  --
+  NombreProvincia : VARCHAR(50)
+  idRegion : INTEGER
+  Estado : CHAR(1)
+  FechaCreacion : DATETIME
+}
+
+entity AJSexo {
+  * idAJSexo : INTEGER
+  --
+  NombreSexo : VARCHAR(10)
+  Estado : CHAR(1)
+  FechaCreacion : DATETIME
+}
+
+entity AJIngestaNativa {
+  * idAJIngestaNativa : INTEGER
+  --
+  NombreIngestaNativa : VARCHAR(30)
+  Estado : CHAR(1)
+  FechaCreacion : DATETIME
+}
+
+entity AJGenoAlimento {
+  * idAJGenoAlimento : INTEGER
+  --
+  NombreGenoAlimento : VARCHAR(10)
+  Estado : CHAR(1)
+  FechaCreacion : DATETIME
+}
+
+entity AJTipoAlimento {
+  * idAJTipoAlimento : INTEGER
+  --
+  TipoAlimento : VARCHAR(20)
+  Estado : CHAR(1)
+  FechaCreacion : DATETIME
+}
+
+entity AJAlimento {
+  * idAJAlimento : INTEGER
+  --
+  NombreAlimento : VARCHAR(20)
+  idTipoAlimento : INTEGER
+}
+
+entity AJHormigas {
+  * idAJHormiga : INTEGER
+  --
+  TipoHormiga : VARCHAR(50)
+  idSexo : INTEGER
+  idProvincia : INTEGER
+  idGenoAlimento : INTEGER
+  idIngestaNativa : INTEGER
+  Estado : CHAR(1)
+  FechaCreacion : DATETIME
+}
+
+AJPaises ||--o{ AJRegiones : "fk_Pais"
+AJRegiones ||--o{ AJProvincias : "fk_Region"
+AJTipoAlimento ||--o{ AJAlimento : "fk_TipoAlimento"
+AJSexo ||--o{ AJHormigas : "fk_Sexo"
+AJProvincias ||--o{ AJHormigas : "fk_Provincia"
+AJGenoAlimento ||--o{ AJHormigas : "fk_GenoAlimento"
+AJIngestaNativa ||--o{ AJHormigas : "fk_IngestaNativa"
+
+@enduml

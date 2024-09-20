@@ -46,7 +46,6 @@ public class AJLogin {
         AJStructureForm();
     }
 
-    @SuppressWarnings("static-access")
     private static void AJStructureForm() throws Exception {
         contra = new StringBuilder();
 

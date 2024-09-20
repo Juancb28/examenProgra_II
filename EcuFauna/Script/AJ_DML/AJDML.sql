@@ -43,7 +43,8 @@ INSERT INTO AJIngestaNativa
     ('CARNIVORO'),
     ('HERBIVORO'),
     ('OMNIVORO'),
-    ('INSECTIVORO');
+    ('INSECTIVORO'),
+    ('NECTARIVOROS');
 
 INSERT INTO AJGenoAlimento
     (NombreGenoAlimento) VALUES 
@@ -65,19 +66,15 @@ INSERT INTO AJTipoAlimento
 
 SELECT NombreGenoAlimento, FechaCreacion FROM AJGenoAlimento WHERE idAJGenoAlimento > 0;
 
-SELECT idAJProvincia, NombreProvincia, idRegion, FechaCreacion FROM AJProvincias 
-        JOIN AJRegiones
-        WHERE Estado LIKE 'A' ;
-
 SELECT P.idAJProvincia, P.NombreProvincia, R.NombreRegion, PA.NombrePais FROM AJProvincias P 
         JOIN AJRegiones R ON P.idRegion = R.idAJRegion
         JOIN AJPaises PA ON R.idPais = PA.idAJPais
-        WHERE P.Estado LIKE 'A' AND R.Estado LIKE 'A' AND PA.Estado LIKE 'A';
+        WHERE P.Estado LIKE 'VIVO' AND R.Estado LIKE 'VIVO' AND PA.Estado LIKE 'VIVO';
 
 SELECT P.NombreProvincia, R.NombreRegion, PA.NombrePais FROM AJProvincias P  
         JOIN AJRegiones R ON P.idRegion = R.idAJRegion 
         JOIN AJPaises PA ON R.idPais = PA.idAJPais 
-        WHERE P.Estado LIKE 'A' AND R.Estado LIKE 'A' AND PA.Estado LIKE 'A' AND idAJProvincia =   21;
+        WHERE P.Estado LIKE 'VIVO' AND R.Estado LIKE 'VIVO' AND PA.Estado LIKE 'VIVO' AND idAJProvincia =   21;
 
 SELECT H.TipoHormiga, S.NombreSexo, P.NombreProvincia, G.NombreGenoAlimento, I.NombreIngestaNativa, H.FechaCreacion
         FROM AJHormigas H
@@ -85,16 +82,57 @@ SELECT H.TipoHormiga, S.NombreSexo, P.NombreProvincia, G.NombreGenoAlimento, I.N
         JOIN AJProvincias P ON H.idProvincia = P.idAJProvincia
         JOIN AJGenoAlimento G ON H.idGenoAlimento = G.idAJGenoAlimento 
         JOIN AJIngestaNativa I ON H.idIngestaNativa = I.idAJIngestaNativa 
-        WHERE H.Estado LIKE 'A' AND S.Estado  LIKE 'A' AND P.Estado LIKE 'A' AND G.Estado LIKE 'A' AND I.Estado LIKE 'A';
+        WHERE H.Estado LIKE 'VIVO' AND S.Estado  LIKE 'VIVO' AND P.Estado LIKE 'VIVO' AND G.Estado LIKE 'VIVO' AND I.Estado LIKE 'VIVO';
 SELECT H.TipoHormiga, S.NombreSexo, P.NombreProvincia, G.NombreGenoAlimento, I.NombreIngestaNativa, H.FechaCreacion
         FROM AJHormigas H
         JOIN AJSexo S ON H.idSexo = S.idAJSexo
         JOIN AJProvincias P ON H.idProvincia = P.idAJProvincia
         JOIN AJGenoAlimento G ON H.idGenoAlimento = G.idAJGenoAlimento 
         JOIN AJIngestaNativa I ON H.idIngestaNativa = I.idAJIngestaNativa 
-        WHERE H.Estado LIKE 'A' AND S.Estado  LIKE 'A' AND P.Estado LIKE 'A' AND G.Estado LIKE 'A' AND I.Estado LIKE 'A' AND idAJHormiga = 1;
+        WHERE H.Estado LIKE 'VIVO' AND S.Estado  LIKE 'VIVO' AND P.Estado LIKE 'VIVO' AND G.Estado LIKE 'VIVO' AND I.Estado LIKE 'VIVO' AND idAJHormiga = 1;
 
 SELECT * FROM AJHormigas;
 INSERT INTO AJHormigas
     (TipoHormiga, idSexo, idProvincia, idGenoAlimento, idIngestaNativa) VALUES
     ('Hormiga', 1, 10, 3, 3);
+
+INSERT INTO AJHormigas (TipoHormiga, idSexo, idProvincia, idGenoAlimento, idIngestaNativa, Estado)
+VALUES ('av', 1, 2, 3, 4, 'VIVO');
+
+SELECT H.TipoHormiga, S.NombreSexo, P.NombreProvincia, G.NombreGenoAlimento, I.NombreIngestaNativa, H.FechaCreacion
+ FROM AJHormigas H
+ JOIN AJSexo S ON H.idSexo = S.idAJSexo
+ JOIN AJProvincias P ON H.idProvincia = P.idAJProvincia
+ JOIN AJGenoAlimento G ON H.idGenoAlimento = G.idAJGenoAlimento 
+ JOIN AJIngestaNativa I ON H.idIngestaNativa = I.idAJIngestaNativa 
+ WHERE H.Estado LIKE 'VIVO' AND S.Estado  LIKE 'VIVO' AND P.Estado LIKE 'VIVO' AND G.Estado LIKE 'VIVO' AND I.Estado LIKE 'VIVO' AND idAJHormiga = 1;
+
+
+ INSERT INTO AJHormigas 
+                        (TipoHormiga, idSexo, idProvincia) VALUES ('larva', 'asexual', 'quito');
+
+INSERT INTO AJHormigas 
+    (TipoHormiga, idSexo, idProvincia) VALUES 
+    ('larva', 3, 4); 
+
+SELECT P.idAJProvincia, P.NombreProvincia, R.NombreRegion, PA.NombrePais FROM AJProvincias P  
+ JOIN AJRegiones R ON P.idRegion = R.idAJRegion 
+ JOIN AJPaises PA ON R.idPais = PA.idAJPais 
+ WHERE P.Estado LIKE 'VIVO' AND R.Estado LIKE 'VIVO' AND PA.Estado LIKE 'VIVO' AND idAJProvincia =  1;
+
+ SELECT H.idAJHormiga, H.TipoHormiga, P.NombreProvincia, S.NombreSexo, H.FechaCreacion
+ FROM AJHormigas H 
+ JOIN AJSexo S ON H.idSexo = S.idAJSexo 
+ JOIN AJProvincias P ON H.idProvincia = P.idAJProvincia 
+ WHERE H.Estado LIKE 'VIVO' AND S.Estado  LIKE 'VIVO' AND P.Estado LIKE 'VIVO'  AND idAJHormiga = 1;
+
+SELECT H.idAJHormiga, H.TipoHormiga, P.NombreProvincia, S.NombreSexo, G.NombreGenoAlimento, I.NombreIngestaNativa, H.FechaCreacion
+FROM AJHormigas H
+JOIN AJSexo S ON H.idSexo = S.idAJSexo
+JOIN AJProvincias P ON H.idProvincia = P.idAJProvincia
+LEFT JOIN AJGenoAlimento G ON H.idGenoAlimento = G.idAJGenoAlimento AND G.Estado LIKE 'VIVO'
+LEFT JOIN AJIngestaNativa I ON H.idIngestaNativa = I.idAJIngestaNativa AND I.Estado LIKE 'VIVO'
+WHERE H.Estado LIKE 'VIVO' 
+  AND S.Estado LIKE 'VIVO' 
+  AND P.Estado LIKE 'VIVO' 
+  AND idAJHormiga = 1;

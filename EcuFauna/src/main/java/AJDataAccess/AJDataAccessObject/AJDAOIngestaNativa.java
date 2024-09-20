@@ -69,7 +69,7 @@ public class AJDAOIngestaNativa extends AJSQLiteDataHelper implements AJIDAO<AJD
     public List<AJDTOIngestaNativa> AJReadAll() throws Exception {
         String query = "SELECT idAJIngestaNativa, NombreIngestaNativa,"
                 + "FechaCreacion FROM AJIngestaNativa WHERE "
-                + "Estado LIKE 'A' ";
+                + "Estado LIKE 'VIVO' ";
         List<AJDTOIngestaNativa> AJList = new ArrayList<>();
         try {
             Connection AJcon = AJOpenConnection();
@@ -80,7 +80,7 @@ public class AJDAOIngestaNativa extends AJSQLiteDataHelper implements AJIDAO<AJD
                 AJDTOIngestaNativa AJdto = new AJDTOIngestaNativa(
                         AJRs.getInt(1),
                         AJRs.getString(2),
-                        "A",
+                        "VIVO",
                         AJRs.getString(3));
                 AJList.add(AJdto);
             }

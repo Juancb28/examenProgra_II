@@ -71,7 +71,7 @@ public class AJDAOProvincia extends AJSQLiteDataHelper implements AJIDAO<AJDTOPr
         String query = "SELECT P.idAJProvincia, P.NombreProvincia, R.NombreRegion, PA.NombrePais FROM AJProvincias P " +
                 "        JOIN AJRegiones R ON P.idRegion = R.idAJRegion" +
                 "        JOIN AJPaises PA ON R.idPais = PA.idAJPais" +
-                "        WHERE P.Estado LIKE 'A' AND R.Estado LIKE 'A' AND PA.Estado LIKE 'A';";
+                "        WHERE P.Estado LIKE 'VIVO' AND R.Estado LIKE 'VIVO' AND PA.Estado LIKE 'VIVO';";
         List<AJDTOProvincia> AJList = new ArrayList<>();
         try {
             Connection AJcon = AJOpenConnection();
@@ -84,8 +84,7 @@ public class AJDAOProvincia extends AJSQLiteDataHelper implements AJIDAO<AJDTOPr
                         AJRs.getString(2),
                         AJRs.getString(3),
                         AJRs.getString(4),
-                        "A",
-                        AJRs.getString(5));
+                        "VIVO");
                 AJList.add(AJdto);
             }
 
@@ -97,10 +96,10 @@ public class AJDAOProvincia extends AJSQLiteDataHelper implements AJIDAO<AJDTOPr
 
     @Override
     public AJDTOProvincia AJReadBy(Integer idEntity) throws Exception {
-        String query = "SELECT P.NombreProvincia, R.NombreRegion, PA.NombrePais FROM AJProvincias P  " +
+        String query = "SELECT P.idAJProvincia, P.NombreProvincia, R.NombreRegion, PA.NombrePais FROM AJProvincias P  " +
                 "        JOIN AJRegiones R ON P.idRegion = R.idAJRegion " +
                 "        JOIN AJPaises PA ON R.idPais = PA.idAJPais " +
-                "        WHERE P.Estado LIKE 'A' AND R.Estado LIKE 'A' AND PA.Estado LIKE 'A' AND idAJProvincia =  "
+                "        WHERE P.Estado LIKE 'VIVO' AND R.Estado LIKE 'VIVO' AND PA.Estado LIKE 'VIVO' AND idAJProvincia =  "
                 + idEntity + ";";
 
         AJDTOProvincia AJDto = new AJDTOProvincia();
@@ -110,11 +109,11 @@ public class AJDAOProvincia extends AJSQLiteDataHelper implements AJIDAO<AJDTOPr
             ResultSet AJRs = AJstmt.executeQuery(query);
             while (AJRs.next()) {
                 AJDto = new AJDTOProvincia(
-                        AJRs.getString(1),
+                        AJRs.getInt(1),
                         AJRs.getString(2),
                         AJRs.getString(3),
-                        "A",
-                        AJRs.getString(4));
+                        AJRs.getString(4),
+                        "VIVO");
             }
         } catch (SQLException e) {
             throw new AJException(e.getMessage(), getClass().getName(), "AJReadBy()");
