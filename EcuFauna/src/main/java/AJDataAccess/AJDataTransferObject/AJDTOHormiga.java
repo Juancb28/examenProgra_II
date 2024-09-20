@@ -1,5 +1,9 @@
 package AJDataAccess.AJDataTransferObject;
 
+import AJBusinessLogic.AJBLGenoAlimento;
+import AJBusinessLogic.AJBLProvincia;
+import AJBusinessLogic.AJBLSexo;
+
 public class AJDTOHormiga {
 
     private Integer idAJHormiga;
@@ -18,7 +22,18 @@ public class AJDTOHormiga {
     public AJDTOHormiga() {
     }
 
-    public AJDTOHormiga(Integer idAJHormiga, String tipoHormiga, Integer idSexo, Integer idProvincia,
+    public AJDTOHormiga(Integer idAJHormiga, String tipoHormiga, String nombreProvincia, String nombreSexo,
+            String nombreGenoAlimento, String nombreIngestaNativa, String estado) {
+        this.idAJHormiga = idAJHormiga;
+        TipoHormiga = tipoHormiga;
+        NombreSexo = nombreSexo;
+        NombreProvincia = nombreProvincia;
+        NombreGenoAlimento = nombreGenoAlimento;
+        NombreIngestaNativa = nombreIngestaNativa;
+        Estado = estado;
+    }
+
+    public AJDTOHormiga(Integer idAJHormiga, String tipoHormiga, Integer idProvincia, Integer idSexo,
             Integer idGenoAlimento, Integer idIngestaNativa, String estado, String fechaCreacion) {
         this.idAJHormiga = idAJHormiga;
         TipoHormiga = tipoHormiga;
@@ -42,15 +57,17 @@ public class AJDTOHormiga {
      * @param estado
      * @param fechaCreacion
      */
-    public AJDTOHormiga(Integer idAJHormiga, String tipoHormiga, String nombreSexo, String nombreProvincia,
-            String nombreGenoAlimento, String nombreIngestaNativa, String estado, String fechaCreacion) {
+    public AJDTOHormiga(Integer idAJHormiga, String tipoHormiga, String nombreProvincia, String nombreSexo,
+            String nombreGenoAlimento, String nombreIngestaNativa, String estado, String fechaCreacion) { // TODO:
+                                                                                                          // lectura
+                                                                                                          // tabla
         this.idAJHormiga = idAJHormiga;
         TipoHormiga = tipoHormiga;
         NombreSexo = nombreSexo;
         NombreProvincia = nombreProvincia;
         NombreGenoAlimento = nombreGenoAlimento;
         NombreIngestaNativa = nombreIngestaNativa;
-        Estado = estado;
+        setEstado(estado);
         FechaCreacion = fechaCreacion;
     }
 
@@ -66,15 +83,27 @@ public class AJDTOHormiga {
      * @param estado
      * @param fechaCreacion
      */
-    public AJDTOHormiga(String tipoHormiga, String nombreSexo, String nombreProvincia, String nombreGenoAlimento,
-            String nombreIngestaNativa, String estado, String fechaCreacion) {
+    public AJDTOHormiga(String tipoHormiga, String nombreProvincia, String nombreSexo, String nombreGenoAlimento,
+            String nombreIngestaNativa, String estado) {
         TipoHormiga = tipoHormiga;
         NombreSexo = nombreSexo;
         NombreProvincia = nombreProvincia;
         NombreGenoAlimento = nombreGenoAlimento;
         NombreIngestaNativa = nombreIngestaNativa;
-        Estado = estado;
-        FechaCreacion = fechaCreacion;
+        setEstado(estado);
+    }
+
+    public AJDTOHormiga(String tipoHormiga, Integer idSexo, Integer idProvincia, String estado) throws Exception { // TODO:
+                                                                                                                   // Usando
+                                                                                                                   // en
+                                                                                                                   // creacion
+                                                                                                                   // larva
+        TipoHormiga = tipoHormiga;
+        this.idSexo = idSexo;
+        this.idProvincia = idProvincia;
+        setNombreSexo(new AJBLSexo().AJReadBy(idSexo).getNombreSexo());
+        setNombreProvincia(new AJBLProvincia().AJReadBy(idProvincia).getNombreProvincia());
+        setEstado(estado);
     }
 
     public Integer getIdAJHormiga() {
@@ -131,6 +160,11 @@ public class AJDTOHormiga {
 
     public void setIdGenoAlimento(Integer idGenoAlimento) {
         this.idGenoAlimento = idGenoAlimento;
+        try {
+            setNombreGenoAlimento(new AJBLGenoAlimento().AJReadBy(idGenoAlimento).getNombreGenoAlimento());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public String getNombreGenoAlimento() {
@@ -138,6 +172,7 @@ public class AJDTOHormiga {
     }
 
     public void setNombreGenoAlimento(String nombreGenoAlimento) {
+
         NombreGenoAlimento = nombreGenoAlimento;
     }
 
@@ -171,6 +206,13 @@ public class AJDTOHormiga {
 
     public void setFechaCreacion(String fechaCreacion) {
         FechaCreacion = fechaCreacion;
+    }
+
+    @Override
+    public String toString() {
+
+        return "Tipo Hormiga: " + getTipoHormiga() + "\nID sexo: " + getIdSexo() + "\nID provincia: " + getIdProvincia()
+                + "\nGenoAlimento: " + getNombreGenoAlimento();
     }
 
 }

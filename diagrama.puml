@@ -1,0 +1,78 @@
+@startuml
+
+package "ec.edu.epn" {
+    class App {
+        +start(Stage stage) : void
+        +main(String[] args) : void
+    }
+}
+
+package "AJUserInterface" {
+    class AJSplash {
+        +getStage() : Stage
+        +setStage(Stage stage) : void
+        +getIsComplete() : Boolean
+        +setIsComplete(Boolean isComplete) : void
+        +AJGetPathImage() : InputStream
+        +AJShowSplash() : void
+    }
+    
+    class AJLogin {
+        +AJShowLogin() : void
+        +AJStructureForm() : void
+        +AJVerificarDatos() : void
+        +AJDatosIncorrectos() : void
+        +mostrarMensajeError() : void
+    }
+
+    class AJForm {
+        +AJShowStageForm() : void
+        +AJStructureForm() : void
+    }
+}
+
+package "AJFramework" {
+    class AJVerificacion {
+        +AJVerificarCredenciales() : Boolean
+    }
+}
+
+package "AJBusinessLogic" {
+    class AJBLGenoAlimento {
+        +AJReadAll() : List
+        +AJReadBy(int id) : Object
+    }
+
+    class AJBLIngestaNativa {
+        +AJReadAll() : List
+        +AJReadBy(int id) : Object
+    }
+}
+
+package "AJUserInterface.AJImageController" {
+    class AJImageDesign {
+        +AJGetPathImage() : InputStream
+    }
+
+    class AJLogo {
+        +AJGetPathImage() : InputStream
+    }
+
+    class AJWarning {
+        +AJGetPathImage() : InputStream
+    }
+
+    class AJAnt {
+        +AJGetPathImage() : InputStream
+    }
+}
+
+App ..> AJSplash : use
+AJSplash ..|> AJImageDesign
+AJLogin ..> AJVerificacion : use
+AJLogin ..> AJForm : use
+AJForm ..> AJBLGenoAlimento : use
+AJForm ..> AJBLIngestaNativa : use
+AJSplash ..> AJLogo : use
+
+@enduml

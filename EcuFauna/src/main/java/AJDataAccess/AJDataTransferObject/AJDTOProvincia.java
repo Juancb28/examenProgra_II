@@ -17,6 +17,13 @@ public class AJDTOProvincia {
         NombreProvincia = nombreProvincia;
     }
 
+    public AJDTOProvincia(String nombreProvincia, String nombreRegion, String nombrePais, String estado) {
+        NombreProvincia = nombreProvincia;
+        NombreRegion = nombreRegion;
+        NombrePais = nombrePais;
+        Estado = estado;
+    }
+
     public AJDTOProvincia(String nombreProvincia, String nombreRegion, String nombrePais,
             String estado, String fechaCreacion) {
         NombreProvincia = nombreProvincia;
@@ -29,20 +36,29 @@ public class AJDTOProvincia {
     public AJDTOProvincia(Integer idAJProvincia, String nombreProvincia, String nombreRegion, String nombrePais,
             String estado, String fechaCreacion) {
         this.idAJProvincia = idAJProvincia;
-        NombreProvincia = nombreProvincia;
-        NombreRegion = nombreRegion;
-        NombrePais = nombrePais;
-        Estado = estado;
-        FechaCreacion = fechaCreacion;
+        this.NombreProvincia = nombreProvincia;
+        this.NombreRegion = nombreRegion;
+        this.NombrePais = nombrePais;
+        this.Estado = estado;
+        this.FechaCreacion = fechaCreacion;
+    }
+
+    public AJDTOProvincia(Integer idAJProvincia, String nombreProvincia, String nombreRegion, String nombrePais,
+            String estado) {
+        this.idAJProvincia = idAJProvincia;
+        this.NombreProvincia = nombreProvincia;
+        this.NombreRegion = nombreRegion;
+        this.NombrePais = nombrePais;
+        this.Estado = estado;
     }
 
     public AJDTOProvincia(Integer idAJProvincia, String nombreProvincia, Integer idRegion, String estado,
             String fechaCreacion) {
         this.idAJProvincia = idAJProvincia;
-        NombreProvincia = nombreProvincia;
+        this.NombreProvincia = nombreProvincia;
         this.idRegion = idRegion;
-        Estado = estado;
-        FechaCreacion = fechaCreacion;
+        this.Estado = estado;
+        this.FechaCreacion = fechaCreacion;
     }
 
     public Integer getIdAJProvincia() {

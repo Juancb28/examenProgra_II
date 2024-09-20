@@ -70,7 +70,7 @@ public class AJDAORegion extends AJSQLiteDataHelper implements AJIDAO<AJDTORegio
     public List<AJDTORegiones> AJReadAll() throws Exception {
         String query = "SELECT idAJRegion, NombreRegion, idPais,"
                 + "FechaCreacion FROM AJRegiones WHERE "
-                + "Estado LIKE 'A' ";
+                + "Estado LIKE 'VIVO' ";
         List<AJDTORegiones> AJList = new ArrayList<>();
         try {
             Connection AJcon = AJOpenConnection();
@@ -82,7 +82,7 @@ public class AJDAORegion extends AJSQLiteDataHelper implements AJIDAO<AJDTORegio
                         AJRs.getInt(1),
                         AJRs.getString(2),
                         AJRs.getInt(3),
-                        "A",
+                        "VIVO",
                         AJRs.getString(4));
                 AJList.add(AJdto);
             }
